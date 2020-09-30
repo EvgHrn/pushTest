@@ -4,6 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("./firebase-messaging-sw.js")
+    .then(function(registration) {
+      console.log("firebase Registration successful, scope is:", registration.scope);
+    })
+    .catch(function(err) {
+      console.log("firebase Service worker registration failed, error:", err);
+    });
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -14,4 +25,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+// serviceWorker.register();
